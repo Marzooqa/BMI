@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            font-family:cursive;
+        }
+        body{
+            /* background-color: rgb(207, 248, 234); */
+            height: 100vh;
+            background-image: linear-gradient(to bottom right ,rgb(234, 247, 174),rgb(174, 236, 247));
+        }
+        #head{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            height: 90px;
+        }
+        #out{
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        #f{
+            line-height: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items:center;
+            padding-left: 20px;
+            height: 300px;
+            width: 300px;
+            display: flex;
+            background-image: linear-gradient(to bottom right ,rgb(174, 236, 247),rgb(234, 247, 174));
+            border: 2px solid white;
+            border-radius: 30px;
+        }
+        input, textarea {
+            padding: 8px;
+            box-sizing: border-box;
+            border-radius: 30px;
+            width: 80%;
+        }
+        button{
+            background-color: rgb(208, 252, 141);
+            height: 40px;
+            width: 80px;
+            margin-top: 20px;
+            /* margin-left: 10px; */
+            border-radius: 20px;
+            cursor:pointer;
+            border: 2px solid white;
+            /* transition: background-color 0.3s; */
+        }
+        button:hover {
+            border: 1.5px solid white; 
+            background: linear-gradient(to bottom right, rgb(208, 252, 141), rgb(220, 255, 167),rgb(208, 252, 141));
+            transform: scale(1.2);
+            transition: 0.3s ease-in-out;
+        }
+    </style>
+    <title>BMI Calculator</title>
+</head>
+<body>
+    <div id="out">
+        <div id="head"><h2>BMI Calculator</h2></div>
+        <div id="f">
+                <label for="age">Age at present:</label>
+                <input type="text" id="age" name="age" required>
+
+                <label for="Height">Height:</label>
+                <input type="text" id="height" name="height" placeholder="Height (cm)" required>
+                
+                <label for="Weight">Weight:</label>
+                <input type="text" id="weight" name="weight" placeholder="Weight (kg)" required>
+    
+                <button onclick="calc()">Calculate</button>
+                <div id="result"></div>
+        </div>
+    </div>
+</body>
+<script>
+function calc() {
+  var hi=document.getElementById("height");
+  var wi=document.getElementById("weight");
+  var rd=document.getElementById("result");
+  var h=parseFloat(hi.value);
+  var w=parseFloat(wi.value);
+  var bmi=w/((h / 100)**2);
+  var category = "";
+  if (isNaN(h) || isNaN(w)) {
+    rd.innerHTML = "Please enter valid height and weight";
+  }else{
+    if (bmi < 18.5) {
+        category = "Underweight";
+    } else if (bmi < 25) {
+        category = "Normal weight";
+    } else if (bmi < 30) {
+        category = "Overweight";
+    } else {
+        category = "Obese";
+    }
+    rd.innerHTML="Your BMI is "+bmi.toFixed(2)+"("+ category +")";
+  }
+}
+</script>
+</html>
